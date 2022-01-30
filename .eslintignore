@@ -12,5 +12,6 @@ scripts/bench/benchmarks/**/*.js
 
 *.svg
 *.css
+styles/*.css
 
 # .firebase
