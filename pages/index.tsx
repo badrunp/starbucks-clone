@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next';
 import dataPage from '../data/page';
 import Navbar from '../components/Navbar';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 export interface TypePage {
@@ -32,8 +32,12 @@ const Home = ({ pages }: { pages: TypePage[] }) => {
               item.colSpan === 2 ? 'grid-col-1 md:col-span-2' : 'col-span-1'
             } ${item.colSpan === 2 && 'grid grid-cols-1 md:grid-cols-2 items-center'}`}
           >
-            <div className={`relative ${item.imageSize} ${item.reverse ? 'md:order-1' : 'md:order-2'}`}>
-              <Image src={item.image} layout='fill' alt={item.title} className='object-cover' />
+            <div
+              className={`relative bg-red-400 flex items-center ${item.imageSize} ${
+                item.reverse ? 'md:order-1' : 'md:order-2'
+              }`}
+            >
+              <img src={item.image} alt={item.title} className='object-cover w-full h-full' />
             </div>
             <div
               className={`py-10 flex flex-col justify-center items-center space-y-6 text-center tracking-normal ${
