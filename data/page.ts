@@ -1,4 +1,4 @@
-import { TypePage } from '../pages';
+import TypePage from '../interface/TypePage';
 
 const dataPage: TypePage[] = [
   {

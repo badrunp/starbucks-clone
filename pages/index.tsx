@@ -1,61 +1,27 @@
 import type { GetStaticProps } from 'next';
 import dataPage from '../data/page';
-import Navbar from '../components/Navbar';
-// import Image from 'next/image';
-import Link from 'next/link';
-
-export interface TypePage {
-  id: number;
-  title: string;
-  content: string;
-  textButton: string;
-  url: string;
-  image: string;
-  imageSize: string;
-  reverse: boolean;
-  titleTextSize: string;
-  contentTextSize: string;
-  backgroundColor: string;
-  colSpan: number;
-  color: string;
-}
+import TypePage from '../interface/TypePage';
+import Layout from '../components/Layout';
+import PageMain from '../components/PageMain';
+import sbContent from '../data/sbContent';
 
 const Home = ({ pages }: { pages: TypePage[] }) => {
   return (
-    <div>
-      <Navbar />
+    <Layout title='Starbucks Coffe Company'>
       <div className='py-6 grid grid-cols-1 md:grid-cols-2 gap-6'>
-        {pages.map((item) => (
+        <PageMain pages={pages} />
+      </div>
+      <div className='px-4 md:px-6 lg:px-[40px] flex flex-col space-y-24 items-center py-8 border-b shadow'>
+        {sbContent.map((item, index) => (
           <div
-            key={item.id}
-            className={`${item.backgroundColor} ${item.color} ${
-              item.colSpan === 2 ? 'grid-col-1 md:col-span-2' : 'col-span-1'
-            } ${item.colSpan === 2 && 'grid grid-cols-1 md:grid-cols-2 items-center'}`}
+            key={index}
+            className='text-center max-w-2xl tracking-tight font-semibold text-sm md:text-[15px]'
           >
-            <div
-              className={`relative bg-red-400 flex items-center ${item.imageSize} ${
-                item.reverse ? 'md:order-1' : 'md:order-2'
-              }`}
-            >
-              <img src={item.image} alt={item.title} className='object-cover w-full h-full' />
-            </div>
-            <div
-              className={`py-10 flex flex-col justify-center items-center space-y-6 text-center tracking-normal ${
-                item.reverse ? 'md:order-2' : 'md:order-1'
-              } ${item.colSpan === 2 ? 'px-12' : 'px-8'}`}
-            >
-              <h2 className={`${item.titleTextSize} font-bold`}>{item.title}</h2>
-              <h4 className={`${item.contentTextSize} font-semibold`}>{item.content}</h4>
-              <Link href={item.url}>
-                <a className={`block py-1 px-4 rounded-full border ${item.color} font-semibold`}>
-                  {item.textButton}
-                </a>
-              </Link>
-            </div>
+            {item}
           </div>
         ))}
       </div>
-    </div>
+    </Layout>
   );
 };
 

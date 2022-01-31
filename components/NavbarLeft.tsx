@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { NavbarMenu } from './Navbar';
+import { TypeMenu } from './Navbar';
 import Starbucks from './Starbucks';
 
-const navbarMenu: NavbarMenu[] = [
+const navbarMenu: TypeMenu[] = [
   {
     id: 1,
     title: 'menu',
