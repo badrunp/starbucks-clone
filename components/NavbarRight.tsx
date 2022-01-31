@@ -1,6 +1,6 @@
 import Menu from './icon/Menu';
 import NavbarAuth from './NavbarAuth';
-import NavbarFindLocation from './NavbarFIndLocation';
+import NavbarFindLocation from './NavbarFindLocation';
 
 const NavbarRight = ({ sidebarToggle }: { sidebarToggle: () => void }) => {
   return (

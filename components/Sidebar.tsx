@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import ArrowDown from './icon/ArrowDown';
 import { TypeMenu } from './Navbar';
 import NavbarAuth from './NavbarAuth';
-import NavbarFindLocation from './NavbarFIndLocation';
+import NavbarFindLocation from './NavbarFindLocation';
 
 const sidebarMenu: TypeMenu[] = [
   {
