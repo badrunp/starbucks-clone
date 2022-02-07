@@ -6,12 +6,12 @@ const navbarAuthMenu: TypeMenu[] = [
   {
     id: 1,
     title: 'Sign in',
-    url: '/',
+    url: '/signin',
   },
   {
     id: 2,
     title: 'Join now',
-    url: '/',
+    url: '/signup',
   },
 ];
 

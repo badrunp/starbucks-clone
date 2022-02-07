@@ -22,12 +22,12 @@ const sidebarMenu: TypeMenu[] = [
         url: '/',
       },
       {
-        id: 1,
+        id: 3,
         title: 'Previous Orders',
         url: '/',
       },
       {
-        id: 1,
+        id: 4,
         title: 'Favorite Products',
         url: '/',
       },

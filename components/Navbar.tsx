@@ -8,12 +8,12 @@ export interface TypeMenu {
   dataChild?: TypeMenu[];
 }
 
-const Navbar = ({ sidebarToggle }: { sidebarToggle: () => void }) => {
+const Navbar = ({ guest = false, sidebarToggle }: { guest?: boolean; sidebarToggle?: () => void }) => {
   return (
     <div className='w-full h-[72px] md:h-[83px] lg:h-[101px] border-b relative z-50 bg-white shadow px-4 md:px-6 lg:px-[40px]'>
       <div className='flex items-center justify-between h-full w-full'>
-        <NavbarLeft />
-        <NavbarRight sidebarToggle={sidebarToggle} />
+        <NavbarLeft guest={guest} />
+        {!guest && sidebarToggle && <NavbarRight sidebarToggle={sidebarToggle} />}
       </div>
     </div>
   );
