@@ -5,16 +5,17 @@ import GuestFooter from './GuestFooter';
 
 const GuestLayout = ({ children, title }: { children: ReactNode; title: string }) => {
   return (
-    <>
+    <div>
       <Head>
         <title>{title}</title>
       </Head>
       <Navbar guest={true} />
-
-      {children}
+      <div className='w-full min-h-screen overflow-hidden bg-white px-4 relative py-6 md:py-12'>
+        <div className='flex flex-col max-w-[548px] lg:max-w-[580px] mx-auto sm:px-4'>{children}</div>
+      </div>
 
       <GuestFooter />
-    </>
+    </div>
   );
 };
 

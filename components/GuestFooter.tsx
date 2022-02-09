@@ -43,16 +43,22 @@ const GuestFooterMenu = () => {
   );
 };
 
+export const GuestButtonOutline = ({ url, title }: { url: string; title: string }) => {
+  return (
+    <Link href={url}>
+      <a className='block py-1 w-max px-4 border border-green-800 rounded-full font-semibold tracking-wide text-lg text-green-700'>
+        {title}
+      </a>
+    </Link>
+  );
+};
+
 const GuestFooter = () => {
   return (
     <div className='bg-white border-t w-full relative h-[314px] px-4 overflow-hidden'>
       <div className='w-[404px] mx-auto flex flex-col mt-10'>
         <div className='flex flex-col space-y-4 sm:space-y-0 sm:flex-row items-start justify-between'>
-          <Link href={'/'}>
-            <a className='block py-1 px-4 border border-green-800 rounded-full font-semibold tracking-wide text-lg text-green-700'>
-              Find a store
-            </a>
-          </Link>
+          <GuestButtonOutline title='Find a store' url='#' />
           <GuestFooterMenu />
         </div>
         <p className='block font-semibold mt-8 tracking-normal text-sm md:text-base'>
