@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Footer from './Footer';
 import Sidebar from './Sidebar';
 import Overlay from './Overlay';
+import { AnimatePresence } from 'framer-motion';
 
 const Layout = ({ children, title }: { children: ReactNode; title: string }) => {
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -30,12 +31,14 @@ const Layout = ({ children, title }: { children: ReactNode; title: string }) => 
         <title>{title}</title>
       </Head>
       <Navbar sidebarToggle={sidebarToggle} />
-      {sidebarActive && (
-        <>
-          <Overlay sidebarClose={sidebarClose} />
-          <Sidebar />
-        </>
-      )}
+      <AnimatePresence>
+        {sidebarActive && (
+          <>
+            <Overlay sidebarClose={sidebarClose} />
+            <Sidebar />
+          </>
+        )}
+      </AnimatePresence>
       {children}
       <Footer />
     </>

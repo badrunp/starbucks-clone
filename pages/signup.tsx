@@ -27,7 +27,7 @@ const Signup = () => {
           </p>
           <div className='flex items-start space-x-4'>
             <div className='flex-shrink-0'>
-              <input type='checkbox' />
+              <input type='checkbox' className='cursor-pointer' />
             </div>
             <div className='flex flex-col space-y-4'>
               <p className='block text-sm tracking-wide'>Yes, I`d like email from Starbucks</p>
@@ -41,7 +41,7 @@ const Signup = () => {
           <h2 className='block font-semibold text-sm uppercase tracking-wider'>Term of Use</h2>
           <div className='flex items-start space-x-4'>
             <div className='flex-shrink-0'>
-              <input type='checkbox' />
+              <input type='checkbox' className='cursor-pointer' />
             </div>
             <div className='flex flex-col space-y-4'>
               <p className='block text-sm tracking-wide'>

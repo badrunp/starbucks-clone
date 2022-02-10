@@ -39,7 +39,7 @@ const Signin: NextPage = () => {
         <div className='flex flex-col space-y-6'>
           <div className='flex items-start space-x-4'>
             <div className='flex-shrink-0'>
-              <input type='checkbox' />
+              <input type='checkbox' className='cursor-pointer' />
             </div>
             <div className='flex flex-col space-y-4'>
               <p className='block text-sm tracking-wide'>
@@ -64,7 +64,7 @@ const Signin: NextPage = () => {
           Join Starbucks® Rewards to earn free food and drinks, get free refills, pay and order with your
           phone, and more.
         </p>
-        <GuestButtonOutline title='Join now' url='#' />
+        <GuestButtonOutline title='Join now' url='/signin' />
       </div>
     </GuestLayout>
   );

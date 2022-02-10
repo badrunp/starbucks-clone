@@ -1,9 +1,14 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from './Navbar';
 import GuestFooter from './GuestFooter';
 
 const GuestLayout = ({ children, title }: { children: ReactNode; title: string }) => {
+  useEffect(() => {
+    if (document.body.classList.contains('overflow-hidden')) {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, []);
   return (
     <div>
       <Head>

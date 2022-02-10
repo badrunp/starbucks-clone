@@ -23,7 +23,11 @@ const navbarMenu: TypeMenu[] = [
 const NavbarLeft = ({ guest }: { guest: boolean }) => {
   return (
     <div className='flex items-center space-x-4 lg:space-x-8 h-full'>
-      <Starbucks />
+      <Link href={'/'}>
+        <a>
+          <Starbucks />
+        </a>
+      </Link>
       <ul className='hidden md:flex items-center justify-center h-full'>
         {!guest &&
           navbarMenu.map((item) => (
