@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
+import { ChangeEvent, useState } from 'react';
 import { GuestButtonOutline } from '../components/GuestFooter';
 import GuestLayout from '../components/GuestLayout';
 import GuestLayoutForm, { GuestButton, GuestInput } from '../components/GuestLayoutForm';
@@ -28,18 +29,42 @@ export const LinkItem = ({ url, title }: { url: string; title: string }) => {
 };
 
 const Signin: NextPage = () => {
+  const [dataInput, setDataInput] = useState<{ email: string; password: string }>({
+    email: '',
+    password: '',
+  });
+
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setDataInput({
+      ...dataInput,
+      [name]: value,
+    });
+  };
+
+  const handleClick = () => {
+    console.log(dataInput);
+  };
+
   return (
     <GuestLayout title='Sign In'>
       <GuestLayoutTop label='Sign in or create an account' info={false} />
       <GuestLayoutForm>
         <div className='flex flex-col space-y-6'>
-          <GuestInput type='text' placeholder='Username or email address' />
-          <GuestInput type='password' placeholder='Password' />
+          <GuestInput type='text' name='email' placeholder='Email address' handleChange={handleChangeInput} />
+          <GuestInput
+            type='password'
+            name='password'
+            placeholder='Password'
+            handleChange={handleChangeInput}
+          />
         </div>
         <div className='flex flex-col space-y-6'>
           <div className='flex items-start space-x-4'>
             <div className='flex-shrink-0'>
-              <input type='checkbox' className='cursor-pointer' />
+              <input type='checkbox' defaultChecked readOnly disabled className='cursor-pointer' />
             </div>
             <div className='flex flex-col space-y-4'>
               <p className='block text-sm tracking-wide'>
@@ -54,7 +79,7 @@ const Signin: NextPage = () => {
             ))}
           </div>
         </div>
-        <GuestButton label='Sign in' />
+        <GuestButton label='Sign in' handleClick={handleClick} />
       </GuestLayoutForm>
       <div className='mt-8 rounded-xl py-8 px-2 md:px-14 bg-[rgba(212,233,226,.33)] text-center flex items-center flex-col space-y-2'>
         <h2 className='hidden md:block font-semibold text-sm uppercase tracking-wider'>
@@ -64,7 +89,7 @@ const Signin: NextPage = () => {
           Join Starbucks® Rewards to earn free food and drinks, get free refills, pay and order with your
           phone, and more.
         </p>
-        <GuestButtonOutline title='Join now' url='/signin' />
+        <GuestButtonOutline title='Join now' url='/signup' />
       </div>
     </GuestLayout>
   );

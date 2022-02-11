@@ -6,7 +6,7 @@ const dataPage: TypePage[] = [
     title: 'Add a burst of excitement to your day',
     content: 'Become a Starbucks® Rewards member to collect Stars to earn free food, drinks & more.',
     textButton: 'Join now',
-    url: '/',
+    url: '/signup',
     imageSize: 'aspect-video',
     image: '/images/137-76029-1.webp',
     reverse: false,

@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const GuestLayoutForm = ({ children }: { children: ReactNode }) => {
   return (
@@ -8,20 +9,63 @@ const GuestLayoutForm = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const GuestInput = ({ type, placeholder }: { type: string; placeholder: string }) => {
+export const GuestInput = ({
+  type,
+  name,
+  placeholder,
+  handleChange,
+}: {
+  type: string;
+  name: string;
+  placeholder: string;
+  handleChange?: (input: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
+  const [isFocus, setIsFocus] = useState(false);
+  const [input, setInput] = useState('');
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange!(e);
+    setInput(e.target.value);
+  };
+
+  const handleBlurInput = () => {
+    if (input.length > 0) {
+      setIsFocus(true);
+    } else {
+      setIsFocus(false);
+    }
+  };
+
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className='block w-full px-4 py-3 border border-gray-400 tracking-wide rounded-xl ring-2 ring-transparent focus:outline-none focus:border-transparent focus:ring-gray-600'
-    />
+    <div onFocus={() => setIsFocus(true)} onBlur={handleBlurInput} className='relative'>
+      <input
+        type={type}
+        name={name}
+        className='block w-full px-4 py-3 border border-gray-400 tracking-wide rounded-xl ring-2 ring-transparent focus:outline-none focus:border-transparent focus:ring-gray-600'
+        onChange={handleChangeInput}
+        autoComplete='off'
+      />
+      <motion.div
+        initial={false}
+        animate={{ y: isFocus ? -52 : -26, x: isFocus ? -10 : 0 }}
+        transition={{ type: 'tween', duration: 0.2 }}
+      >
+        <span className='bg-white block tracking-wide absolute top-1/2 left-4 text-gray-800 font-semibold -translate-y-1/2 pointer-events-none  '>
+          {placeholder}
+        </span>
+      </motion.div>
+    </div>
   );
 };
 
-export const GuestButton = ({ label }: { label: string }) => {
+export const GuestButton = ({ label, handleClick }: { label: string; handleClick: () => void }) => {
   return (
     <div className='flex justify-end'>
-      <button className='block py-4 md:py-[18px] px-6 md:px-7 rounded-full bg-green-600 text-white font-semibold tracking-wide shadow-lg'>
+      <button
+        type='button'
+        onClick={handleClick}
+        className='block py-4 md:py-[18px] px-6 md:px-7 rounded-full bg-green-600 text-white font-semibold tracking-wide shadow-lg'
+      >
         {label}
       </button>
     </div>
