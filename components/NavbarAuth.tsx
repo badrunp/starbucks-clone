@@ -1,19 +1,6 @@
 import { ReactNode } from 'react';
-import { TypeMenu } from './Navbar';
+import { navbarAuthMenu } from '../data/navbar';
 import NavbarAuthItem from './NavbarAuthItem';
-
-const navbarAuthMenu: TypeMenu[] = [
-  {
-    id: 1,
-    title: 'Sign in',
-    url: '/signin',
-  },
-  {
-    id: 2,
-    title: 'Join now',
-    url: '/signup',
-  },
-];
 
 const NavbarAuth = ({ className = 'hidden md:flex' }: { className?: ReactNode }) => {
   return (

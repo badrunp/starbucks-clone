@@ -4,7 +4,7 @@ import Pinterest from '../components/icon/Pinterest';
 import Instargram from '../components/icon/Instargram';
 import Youtube from '../components/icon/Youtube';
 import Twiter from '../components/icon/Twiter';
-import { TypeDataFooter1 } from '../interface/Footer';
+import { FooterMenu, TypeDataFooter1 } from '../interface/Footer';
 
 export const dataFooter: TypeDataFooter1[] = [
   {
@@ -212,5 +212,18 @@ export const dataSocial = [
     id: 6,
     icon: <Twiter />,
     url: '/',
+  },
+];
+
+export const data: FooterMenu[] = [
+  {
+    id: 1,
+    title: 'Forgot your username?',
+    url: '#',
+  },
+  {
+    id: 2,
+    title: 'Forgot your password?',
+    url: '#',
   },
 ];

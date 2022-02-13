@@ -14,11 +14,13 @@ export const GuestInput = ({
   name,
   placeholder,
   handleChange,
+  errors,
 }: {
   type: string;
   name: string;
   placeholder: string;
   handleChange?: (input: React.ChangeEvent<HTMLInputElement>) => void;
+  errors: any;
 }) => {
   const [isFocus, setIsFocus] = useState(false);
   const [input, setInput] = useState('');
@@ -54,6 +56,11 @@ export const GuestInput = ({
           {placeholder}
         </span>
       </motion.div>
+      {errors?.[name] !== undefined && (
+        <span className='block text-red-500 text-sm tracking-wide'>{`${errors[name]
+          .charAt(0)
+          .toUpperCase()}${errors[name].slice(1).toLowerCase()}`}</span>
+      )}
     </div>
   );
 };

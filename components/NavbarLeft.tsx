@@ -1,24 +1,6 @@
 import Link from 'next/link';
-import { TypeMenu } from './Navbar';
+import { navbarMenu } from '../data/navbar';
 import Starbucks from './Starbucks';
-
-const navbarMenu: TypeMenu[] = [
-  {
-    id: 1,
-    title: 'menu',
-    url: '/',
-  },
-  {
-    id: 2,
-    title: 'rewards',
-    url: '/',
-  },
-  {
-    id: 3,
-    title: 'gift cards',
-    url: '/',
-  },
-];
 
 const NavbarLeft = ({ guest }: { guest: boolean }) => {
   return (

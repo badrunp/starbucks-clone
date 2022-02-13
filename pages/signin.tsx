@@ -5,20 +5,10 @@ import { GuestButtonOutline } from '../components/GuestFooter';
 import GuestLayout from '../components/GuestLayout';
 import GuestLayoutForm, { GuestButton, GuestInput } from '../components/GuestLayoutForm';
 import GuestLayoutTop from '../components/GuestLayoutTop';
+import { data } from '../data/footer';
+import regexMail from '../data/regexmail';
+import { validateSignin } from '../data/validate';
 import { FooterMenu } from '../interface/Footer';
-
-const data: FooterMenu[] = [
-  {
-    id: 1,
-    title: 'Forgot your username?',
-    url: '#',
-  },
-  {
-    id: 2,
-    title: 'Forgot your password?',
-    url: '#',
-  },
-];
 
 export const LinkItem = ({ url, title }: { url: string; title: string }) => {
   return (
@@ -29,10 +19,11 @@ export const LinkItem = ({ url, title }: { url: string; title: string }) => {
 };
 
 const Signin: NextPage = () => {
-  const [dataInput, setDataInput] = useState<{ email: string; password: string }>({
+  const [dataInput, setDataInput] = useState<{ email: string; password: string } | any>({
     email: '',
     password: '',
   });
+  const [inputError, setInputError] = useState<any>();
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -44,8 +35,35 @@ const Signin: NextPage = () => {
     });
   };
 
+  const setError = (error: object) => {
+    setInputError({ ...error });
+  };
   const handleClick = () => {
-    console.log(dataInput);
+    const objError: any = {};
+
+    validateSignin.map((item) => {
+      if (item.required) {
+        if (dataInput[item.label] === '') {
+          objError[item.label] = item.label + ' is required';
+        } else if (item.min && item.min > 0) {
+          if (dataInput[item.label].length < item.min) {
+            objError[item.label] = item.label + ' min ' + item.min + ' character';
+          } else {
+            delete objError[item.label];
+          }
+        } else if (item.email) {
+          if (!dataInput[item.label].toLowerCase().match(regexMail)) {
+            objError[item.label] = item.label + ' is invalid!';
+          } else {
+            delete objError[item.label];
+          }
+        } else {
+          delete objError[item.label];
+        }
+      }
+    });
+
+    setError(objError);
   };
 
   return (
@@ -53,12 +71,19 @@ const Signin: NextPage = () => {
       <GuestLayoutTop label='Sign in or create an account' info={false} />
       <GuestLayoutForm>
         <div className='flex flex-col space-y-6'>
-          <GuestInput type='text' name='email' placeholder='Email address' handleChange={handleChangeInput} />
+          <GuestInput
+            type='text'
+            name='email'
+            placeholder='Email address'
+            handleChange={handleChangeInput}
+            errors={inputError}
+          />
           <GuestInput
             type='password'
             name='password'
             placeholder='Password'
             handleChange={handleChangeInput}
+            errors={inputError}
           />
         </div>
         <div className='flex flex-col space-y-6'>

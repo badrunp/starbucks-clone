@@ -3,20 +3,26 @@ import { ChangeEvent, useState } from 'react';
 import GuestLayout from '../components/GuestLayout';
 import GuestLayoutForm, { GuestButton, GuestInput } from '../components/GuestLayoutForm';
 import GuestLayoutTop from '../components/GuestLayoutTop';
+import regexMail from '../data/regexmail';
+import { validateSignup } from '../data/validate';
 import { LinkItem } from './signin';
 
 const Signup: NextPage = () => {
-  const [dataInput, setDataInput] = useState<{
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  }>({
+  const [dataInput, setDataInput] = useState<
+    | {
+        firstName: string;
+        lastName: string;
+        email: string;
+        password: string;
+      }
+    | any
+  >({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
   });
+  const [inputError, setInputError] = useState<any>();
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -24,12 +30,39 @@ const Signup: NextPage = () => {
 
     setDataInput({
       ...dataInput,
-      [name]: value,
+      [name]: name === 'email' ? value.toLowerCase() : value,
     });
   };
 
+  const setError = (error: object) => {
+    setInputError({ ...error });
+  };
   const handleClick = () => {
-    console.log(dataInput);
+    const objError: any = {};
+
+    validateSignup.map((item) => {
+      if (item.required) {
+        if (dataInput[item.label] === '') {
+          objError[item.label] = item.label + ' is required';
+        } else if (item.min && item.min > 0) {
+          if (dataInput[item.label].length < item.min) {
+            objError[item.label] = item.label + ' min ' + item.min + ' character';
+          } else {
+            delete objError[item.label];
+          }
+        } else if (item.email) {
+          if (!dataInput[item.label].toLowerCase().match(regexMail)) {
+            objError[item.label] = item.label + ' is invalid!';
+          } else {
+            delete objError[item.label];
+          }
+        } else {
+          delete objError[item.label];
+        }
+      }
+    });
+
+    setError(objError);
   };
 
   return (
@@ -43,13 +76,32 @@ const Signup: NextPage = () => {
             name='firstName'
             placeholder='First Name'
             handleChange={handleChangeInput}
+            errors={inputError}
           />
-          <GuestInput type='text' name='lastName' placeholder='Last Name' handleChange={handleChangeInput} />
+          <GuestInput
+            type='text'
+            name='lastName'
+            placeholder='Last Name'
+            handleChange={handleChangeInput}
+            errors={inputError}
+          />
         </div>
         <div className='flex flex-col space-y-6'>
           <h2 className='block font-semibold text-lg tracking-wide'>Account Security</h2>
-          <GuestInput type='text' name='email' placeholder='Email Address' handleChange={handleChangeInput} />
-          <GuestInput type='text' name='password' placeholder='Password' handleChange={handleChangeInput} />
+          <GuestInput
+            type='text'
+            name='email'
+            placeholder='Email Address'
+            handleChange={handleChangeInput}
+            errors={inputError}
+          />
+          <GuestInput
+            type='text'
+            name='password'
+            placeholder='Password'
+            handleChange={handleChangeInput}
+            errors={inputError}
+          />
         </div>
         <div className='flex flex-col space-y-6'>
           <h2 className='block font-semibold text-sm uppercase tracking-wider'>
