@@ -29,7 +29,7 @@ const Sidebar = () => {
               <Fragment key={item.id}>
                 <button
                   onClick={() => setIsActive(true)}
-                  className='py-4 px-8 text-[19px] tracking-normal font-semibold flex items-center justify-between'
+                  className='py-4 px-8 text-[19px] focus:outline-none tracking-normal font-semibold flex items-center justify-between'
                 >
                   <span>{item.title}</span>
                   {item.url === '' && <ArrowDown className='-rotate-90' />}

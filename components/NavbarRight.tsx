@@ -8,7 +8,7 @@ const NavbarRight = ({ sidebarToggle }: { sidebarToggle: () => void }) => {
       <NavbarFindLocation />
       <button
         onClick={sidebarToggle}
-        className='relative md:hidden p-[6px] hover:bg-zinc-200 before:contents before:absolute before:inset-0 before:w-full before:h-full before:bg-gray-200 before:z-20 rounded-full'
+        className='relative md:hidden focus:outline-none p-[6px] hover:bg-zinc-200 before:contents before:absolute before:inset-0 before:w-full before:h-full before:bg-gray-200 before:z-20 rounded-full'
       >
         <Menu />
       </button>

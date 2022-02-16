@@ -19,7 +19,7 @@ const FooterMenuItem = ({
     <div key={id} className='flex flex-col items-start overflow-y-hidden'>
       <button
         onClick={() => setIsActive(index)}
-        className='cursor-pointer lg:cursor-text font-semibold text-[19px] text-left flex items-center justify-between w-full mb-3'
+        className='cursor-pointer focus:outline-none lg:cursor-text font-semibold text-[19px] text-left flex items-center justify-between w-full mb-3'
       >
         <span>{label}</span>
         <ArrowDown className='block lg:hidden' />
